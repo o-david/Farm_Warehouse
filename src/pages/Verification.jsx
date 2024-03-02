@@ -2,6 +2,8 @@ import React from "react";
 import { leftArrow, logoImg, verImg } from "../assets";
 import { Link, Route, Routes } from "react-router-dom";
 import VerificationRequired from "../components/verification/VerificationRequired";
+import ApprovalPending from "../components/verification/ApprovalPending";
+import VerificationSuccessful from "../components/verification/VerificationSuccessful";
 
 const Verification = () => {
 
@@ -18,21 +20,22 @@ const Verification = () => {
           </p>
         </div>
       </div>
-      <div className="px-[4rem] py-[3rem] border w-[51.39%]">
-        <div className="border w-[78.51%] flex flex-col gap-[5vh]">
-          <div className="flex justify-between">
+      <div className="pl-[4rem] py-[3rem] border w-[51.39%]">
+        <div className=" w-[78.51%] flex flex-col gap-[5vh]">
+          <div className="flex justify-between text-[#475467] text-[14px] font-medium">
             <div className="flex gap-1 cursor-pointer">
               <img src={leftArrow} alt="" />
               <p>Back home</p>
             </div>
-            <p>
-              Already have an account? <Link to={"/"}>Log in</Link>{" "}
+            <p className=" font-normal">
+              Already have an account? <Link className=" font-semibold text-pry" to={"/"}>Log in</Link>{" "}
             </p>
           </div>
           <div className="flex flex-col items-center">
             <Routes>
-                <Route path="/" element= {<VerificationRequired/>}/>
-                <Route path="" element/>
+                <Route path="/:id" element= {<VerificationRequired/>}/>
+                <Route path="/successful/:id" element= {<VerificationSuccessful/>}/>
+                <Route path="/pending/:id" element= {<ApprovalPending/>}/>
             </Routes>
           </div>
         </div>
