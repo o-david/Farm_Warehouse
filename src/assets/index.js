@@ -10,5 +10,10 @@ import thumbImg from "./thumb-image.svg";
 import passwordImg from "./show-password.svg";
 import Checkboxbase from "./Checkbox-base.svg";
 import CheckboxChecked from "./Checkbox-checked.svg";
+import greenTick from "./green-tick.svg";
+import personalDetailsImg from "./personal-details-img.png";
+import bankDetailsImg from "./bank-details-img.png";
+import securityDetailsImg from "./security-details-img.png";
+import farmRegImg from "./farm-reg-img.png";
 
-export {verImg, pendingCircle, CheckboxChecked, Checkboxbase, passwordImg, thumbImg, alertCircle, checkCircle, loginImg, logoImg, leftArrow, infoCircle}
+export {verImg, bankDetailsImg, farmRegImg, securityDetailsImg, personalDetailsImg, pendingCircle, CheckboxChecked, Checkboxbase, passwordImg, thumbImg, alertCircle, greenTick, checkCircle, loginImg, logoImg, leftArrow, infoCircle}

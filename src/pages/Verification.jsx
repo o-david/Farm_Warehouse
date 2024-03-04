@@ -1,9 +1,9 @@
 import React from "react";
 import { leftArrow, logoImg, verImg } from "../assets";
 import { Link, Route, Routes } from "react-router-dom";
-import VerificationRequired from "../components/verification/VerificationRequired";
-import ApprovalPending from "../components/verification/ApprovalPending";
-import VerificationSuccessful from "../components/verification/VerificationSuccessful";
+import VerificationRequired from "../components/verification components/VerificationRequired";
+import ApprovalPending from "../components/verification components/ApprovalPending";
+import VerificationSuccessful from "../components/verification components/VerificationSuccessful";
 
 const Verification = () => {
 
