@@ -7,3 +7,10 @@
 }
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .no-scrollbar {
+    @apply overflow-scroll;
+    @apply [&::-webkit-scrollbar]:hidden;
+  }
+}

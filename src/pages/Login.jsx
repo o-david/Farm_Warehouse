@@ -16,9 +16,9 @@ import { Link, Route, Routes } from "react-router-dom";
 
 const Login = () => {
   const [emailError, setEmailError] = useState(
-    "This phone number is not verified. Log in with email instead."
+    ""
   );
-  const [passwordError, setPasswordError] = useState("");
+  const [passwordError, setPasswordError] = useState("This phone number is not verified. Log in with email instead.");
   const [showPassword, setShowPassword] = useState(false);
 
   const [isChecked, setIsChecked] = useState(false);
@@ -33,7 +33,7 @@ const Login = () => {
 
   return (
     <div className="flex h-[100vh]">
-      <div className="w-[48.61%] flex items-center justify-center border bg-[#F5F0EC] p-[4rem]">
+      <div className="w-[48.61%] flex items-center justify-center  bg-[#F5F0EC] p-[4rem]">
         <div
           className="h-full w-full bg-cover rounded-[2rem] font flex-col flex px-[8%] py-6 items-start justify-between"
           style={{ backgroundImage: `url(${loginImg})` }}
@@ -44,16 +44,16 @@ const Login = () => {
           </p>
         </div>
       </div>
-      <div className="pl-[4rem] py-[3rem] border w-[51.39%]">
-        <div className=" w-[78.51%] flex flex-col gap-[5vh]">
+      <div className="pl-[4rem] py-[3rem] w-[51.39%] h-full">
+        <div className=" w-[78.51%] flex flex-col gap-[5vh] h-full">
           <div className="flex justify-between text-[#475467] text-[14px] font-medium">
             <div className="flex gap-1 cursor-pointer">
               <img src={leftArrow} alt="" />
               <p>Back home</p>
             </div>
           </div>
-          <div className="flex flex-col items-center">
-            <div className="w-[73%] flex flex-col gap-10 ">
+          <div className="flex flex-col items-center h-full">
+            <div className="w-[73%] flex flex-col justify-between h-full  ">
               <div className=" flex flex-col gap-3 items-center">
                 <h1 className=" font-semibold text-[30px] text-left w-full">
                   Welcome back!

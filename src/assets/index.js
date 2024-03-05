@@ -15,5 +15,7 @@ import personalDetailsImg from "./personal-details-img.png";
 import bankDetailsImg from "./bank-details-img.png";
 import securityDetailsImg from "./security-details-img.png";
 import farmRegImg from "./farm-reg-img.png";
+import index from "./index.svg";
+import thumb from "./thumb.svg";
 
-export {verImg, bankDetailsImg, farmRegImg, securityDetailsImg, personalDetailsImg, pendingCircle, CheckboxChecked, Checkboxbase, passwordImg, thumbImg, alertCircle, greenTick, checkCircle, loginImg, logoImg, leftArrow, infoCircle}
+export {verImg,index, thumb, bankDetailsImg, farmRegImg, securityDetailsImg, personalDetailsImg, pendingCircle, CheckboxChecked, Checkboxbase, passwordImg, thumbImg, alertCircle, greenTick, checkCircle, loginImg, logoImg, leftArrow, infoCircle}
