@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { nigerianBanks } from "../../data";
 import Input from "../Input";
+import { useNavigate } from "react-router-dom";
 
 const BankDetails = ({ childPage }) => {
   const [hasSmartPhone, setHasSmartPhone] = useState(false);
   const [hasBankAccount, setHasBankAccount] = useState(false);
-
+  const navigate = useNavigate();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    navigate('../security')
+  };
   useEffect(() => {
     childPage("bankDetails");
   }, []);
@@ -15,7 +20,7 @@ const BankDetails = ({ childPage }) => {
         <h1 className=" font-bold text-[1.875rem]">Create Account</h1>
         <p className=" font-medium text-[1.125rem]">Bank Details</p>
       </div>
-      <form className=" text-[#344054] text-[0.875rem] font-medium flex flex-col gap-8" action="">
+      <form className=" text-[#344054] text-[0.875rem] font-medium flex flex-col gap-8" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-2">
           <p>Do you have a Smartphone?</p>
           <div className="flex gap-5">
@@ -63,10 +68,10 @@ const BankDetails = ({ childPage }) => {
         </div>
         </div>
         <div className="flex justify-between">
-          <button className="border w-[47.78%] py-[0.625rem] text-center rounded-lg">
+          <button onClick={()=> navigate(-1)} className="border w-[47.78%] py-[0.625rem] text-center rounded-lg">
             Back
           </button>
-          <button className="bg-[#0D8A6A] border w-[47.78%] py-[0.625rem] disabled:bg-[#90D0BF] text-center rounded-lg text-white">
+          <button type="submit" className="bg-[#0D8A6A] border w-[47.78%] py-[0.625rem] disabled:bg-[#90D0BF] text-center rounded-lg text-white">
             Continue
           </button>
         </div>

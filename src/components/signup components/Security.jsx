@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { CheckboxChecked, Checkboxbase, alertCircle, index, thumb, thumbImg } from '../../assets'
+import { useNavigate } from 'react-router-dom';
 
 const Security = ({childPage}) => {
   const [isChecked, setIsChecked] = useState(false);
-
+  const navigate = useNavigate();
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
@@ -58,8 +59,8 @@ const Security = ({childPage}) => {
 
         </div>
         <div className='flex justify-between'>
-          <button className='border w-[47.78%] py-[0.625rem] text-center rounded-lg'>Back</button>
-          <button disabled={!isChecked} className='bg-[#0D8A6A] border w-[47.78%] py-[0.625rem] disabled:bg-[#90D0BF] text-center rounded-lg text-white'>Continue</button>
+          <button onClick={()=> navigate(-1)} className='border w-[47.78%] py-[0.625rem] text-center rounded-lg'>Back</button>
+          <button onClick={()=> navigate('../farmRegistration')} disabled={!isChecked} className='bg-[#0D8A6A] border w-[47.78%] py-[0.625rem] disabled:bg-[#90D0BF] text-center rounded-lg text-white'>Continue</button>
         </div>
     </div>
   )
