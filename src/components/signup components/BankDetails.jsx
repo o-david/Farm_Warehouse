@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { nigerianBanks } from "../../data";
+import Input from "../Input";
 
 const BankDetails = ({ childPage }) => {
   const [hasSmartPhone, setHasSmartPhone] = useState(false);
@@ -9,7 +10,7 @@ const BankDetails = ({ childPage }) => {
     childPage("bankDetails");
   }, []);
   return (
-    <div className="w-[63%]  overflow-y-scroll no-scrollbar  h-full gap-6 flex flex-col">
+    <div className='lg:w-[63%] w-full px-1 h-full gap-6 flex flex-col'>
       <div className="text-[#344054] flex gap-2 flex-col">
         <h1 className=" font-bold text-[1.875rem]">Create Account</h1>
         <p className=" font-medium text-[1.125rem]">Bank Details</p>
@@ -43,36 +44,20 @@ const BankDetails = ({ childPage }) => {
           </div>
         
         {hasBankAccount && 
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 px-1">
           <Input
           type={"dropdown"}
-          label={"Site"}
+          label={"Bank Name"}
           options={nigerianBanks}
-          placeholder={"Select Site"}
+          placeholder={"Select your Bank"}
           required={true}
         />
-          <div className="flex flex-col gap-2">
-                  <p className=" font-medium text-[0.875rem] text-[#344054]">Bank Name*</p>
-                  <div className={`border border-[#D0D5DD] rounded-lg py-2 px-3 flex gap-1`}>
-                    <select name="" id="" className="outline-none ">
-                      {nigerianBanks.map((bank, index)=>(
-                        <option key={index} value={bank}>{bank}</option>
-                      ))}
-                    </select>
-                  </div>
-                  
-                </div>
-          <div className="flex flex-col gap-2">
-                  <p className=" font-medium text-[0.875rem] text-[#344054]">Personal Bank Account Number*</p>
-                  <div className={`border border-[#D0D5DD] rounded-lg py-2 px-3 flex gap-1`}>
-                    <input
-                      type="text"
-                      className="text-[1rem] font-normal w-full outline-none text-[#101828]"
-                      placeholder="Enter your Voter’s card number"
-                    />
-                  </div>
-                  
-                </div>
+        <Input
+          type={"text"}
+          label={"Personal Bank Account Number"}
+          required={true}
+          placeholder={"Enter your bank account number"}
+        />
         </div>
         }
         </div>

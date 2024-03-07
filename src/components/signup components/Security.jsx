@@ -11,7 +11,7 @@ const Security = ({childPage}) => {
     childPage('security')
   }, [])
   return (
-    <div className='w-[63%] overflow-y-scroll no-scrollbar  h-full gap-6 flex flex-col'>
+    <div className='lg:w-[63%] w-full px-1 h-full gap-6 flex flex-col'>
         <div className='text-[#344054] flex gap-2 flex-col'>
             <h1 className=' font-bold text-[1.875rem]'>Create Account</h1>
             <p className=' font-medium text-[1.125rem]'>Security - Setup Fingerprint <span className=' italic font-normal'>(Optional)</span></p>

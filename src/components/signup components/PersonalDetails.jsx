@@ -13,9 +13,6 @@ const PersonalDetails = ({ childPage }) => {
   const [isMatch, setIsMatch] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [passwordLengthValid, setPasswordLengthValid] = useState(false);
-  const [passwordSpecialCharValid, setPasswordSpecialCharValid] =
-    useState(false);
   const [image, setImage] = useState(null);
 
   const handleImageUpload = (event) => {
@@ -42,8 +39,6 @@ const PersonalDetails = ({ childPage }) => {
   const handlePasswordChange = (event) => {
     const password = event.target.value;
     setPassword(password);
-    setPasswordLengthValid(validatePasswordLength(password));
-    setPasswordSpecialCharValid(validatePasswordSpecialChar(password));
   };
   const handlePasswordBlur = (event) => {
     const password = event.target.value;
@@ -78,41 +73,25 @@ const PersonalDetails = ({ childPage }) => {
     childPage("");
   }, []);
   return (
-    <div className="w-[63%] px-1  h-full mb-6 flex flex-col gap-6">
+    <div className="lg:w-[63%] w-full px-1  h-full mb-6 flex flex-col gap-6">
       <div className="text-[#344054]">
         <h1 className=" font-bold text-[1.875rem]">Create Account</h1>
         <p className=" font-medium text-[1.125rem]">Personal Information</p>
       </div>
       <form action="" onSubmit={handleSubmit} className="gap-4 flex flex-col">
         <div className="flex gap-[0.375rem]">
-          <div className="flex flex-col gap-2">
-            <p className=" font-medium text-[0.875rem] text-[#344054]">
-              First Name<sup>*</sup>
-            </p>
-            <div
-              className={`border border-[#D0D5DD] rounded-lg py-2 px-3 flex gap-1`}
-            >
-              <input
-                type="text"
-                className="text-[1rem] w-full outline-none text-[#101828]"
-                placeholder="Enter first name"
-              />
-            </div>
-          </div>
-          <div className="flex flex-col gap-2">
-            <p className=" font-medium text-[0.875rem] text-[#344054]">
-              Last Name<sup>*</sup>
-            </p>
-            <div
-              className={`border border-[#D0D5DD] rounded-lg py-2 px-3 flex gap-1`}
-            >
-              <input
-                type="text"
-                className="text-[1rem] w-full outline-none text-[#101828]"
-                placeholder="Enter last name"
-              />
-            </div>
-          </div>
+        <Input
+          type={"text"}
+          label={"First Name"}
+          required={true}
+          placeholder={"Enter first name"}
+        />
+        <Input
+          type={"text"}
+          label={"Last Name"}
+          required={true}
+          placeholder={"Enter last name"}
+        />
         </div>
         <div className="flex flex-col gap-2">
           <p className=" font-medium text-[0.875rem] text-[#344054]">
@@ -208,7 +187,9 @@ const PersonalDetails = ({ childPage }) => {
                   onFocus={handlePasswordFocus}
                 />
                 {passwordError ? (
-                  <img src={alertCircle} />
+                  <img src={alertCircle}
+                  onClick={handleTogglePassword}
+                  />
                 ) : (
                   <img
                     onClick={handleTogglePassword}
@@ -238,7 +219,8 @@ const PersonalDetails = ({ childPage }) => {
                   onFocus={handleConfirmPasswordFocus}
                 />
                 {confirmPasswordError ? (
-                  <img src={alertCircle} />
+                  <img src={alertCircle}
+                  onClick={handleToggleConfirmPassword} />
                 ) : (
                   <img
                     onClick={handleToggleConfirmPassword}
