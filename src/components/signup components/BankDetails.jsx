@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { nigerianBanks } from "../../data";
-import { index } from "../../assets";
 
 const BankDetails = ({ childPage }) => {
   const [hasSmartPhone, setHasSmartPhone] = useState(false);
@@ -45,6 +44,13 @@ const BankDetails = ({ childPage }) => {
         
         {hasBankAccount && 
         <div className="flex flex-col gap-6">
+          <Input
+          type={"dropdown"}
+          label={"Site"}
+          options={nigerianBanks}
+          placeholder={"Select Site"}
+          required={true}
+        />
           <div className="flex flex-col gap-2">
                   <p className=" font-medium text-[0.875rem] text-[#344054]">Bank Name*</p>
                   <div className={`border border-[#D0D5DD] rounded-lg py-2 px-3 flex gap-1`}>

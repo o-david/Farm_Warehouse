@@ -38,7 +38,7 @@ const isAllFieldsFilled = digits.every((digit) => digit !== '');
     setIsResendDisabled(true);
   };
     return (
-      <div className="w-[73%] flex flex-col gap-10 ">
+      <div className="lg:w-[73%] w-[91.47%] flex flex-col gap-6 lg:gap-10 ">
             <div className=" flex flex-col gap-3 items-center">
 
       <img src={infoCircle} className="border border-[#EAECF0] p-[0.875rem] rounded-xl" alt="" />
