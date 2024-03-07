@@ -29,26 +29,26 @@ const SignUp = () => {
     <div className="pl-[4rem] pt-[2.25rem] w-[51.39%] flex flex-col gap-14 h-full">
         <div className=" w-[78.51%] flex flex-col gap-[5vh]">
           <div className="flex justify-between text-[#475467] text-[14px] font-medium">
-            <div className="flex gap-1 cursor-pointer">
+            <Link to={'/'} className="flex gap-1 cursor-pointer">
               <img src={leftArrow} alt="" />
               <p>Back home</p>
-            </div>
+            </Link>
             <p className=" font-normal">
-              Already have an account? <Link className=" font-semibold text-pry" to={"/"}>Log in</Link>{" "}
+              Already have an account? <Link className=" font-semibold text-pry" to={"/login"}>Log in</Link>{" "}
             </p>
           </div>
         </div>
         <div className=' flex gap-14 items-start h-full overflow-clip p-2'>
           <div className='flex flex-col items-center'>
             {regStage == ''? <div className='w-6 aspect-square flex items-center justify-center shadow-[0_0_0_4px_#B4DFD4] rounded-full bg-[#E7F5F1] border border-[#0D8A6A]'><div className=' bg-[#0D8A6A] w-2 rounded-full aspect-square'></div></div> :<div className='w-6 aspect-square flex items-center justify-center rounded-full bg-[#E7F5F1] border border-[#0D8A6A]'><img src={greenTick} alt="" /></div>}
-            <div className='bg-[#EAECF0] h-20 w-[0.125rem]'></div>
+            {regStage == ''? <div className='bg-[#EAECF0] h-20 w-[0.125rem]'></div> :<div className='bg-[#0E9874] h-20 w-[0.125rem]'></div>}
             {regStage == ''? <div className='w-6 aspect-square flex items-center justify-center rounded-full border border-[#EAECF0]'><div className=' bg-[#EAECF0] w-2 rounded-full aspect-square'></div></div> :regStage == 'bankDetails'? <div className='w-6 aspect-square flex items-center justify-center shadow-[0_0_0_4px_#B4DFD4] rounded-full bg-[#E7F5F1] border border-[#0D8A6A]'><div className=' bg-[#0D8A6A] w-2 rounded-full aspect-square'></div></div> :<div className='w-6 aspect-square flex items-center justify-center rounded-full bg-[#E7F5F1] border border-[#0D8A6A]'><img src={greenTick} alt="" /></div>}
-            <div className='bg-[#EAECF0] h-20 w-[0.125rem]'></div>
+            {regStage == ''? <div className='bg-[#EAECF0] h-20 w-[0.125rem]'></div>:regStage == 'bankDetails'? <div className='bg-[#EAECF0] h-20 w-[0.125rem]'></div> :<div className='bg-[#0E9874] h-20 w-[0.125rem]'></div>}
             {regStage == 'security'? <div className='w-6 aspect-square flex items-center justify-center shadow-[0_0_0_4px_#B4DFD4] rounded-full bg-[#E7F5F1] border border-[#0D8A6A]'><div className=' bg-[#0D8A6A] w-2 rounded-full aspect-square'></div></div>  :regStage == 'farmRegistration'?<div className='w-6 aspect-square flex items-center justify-center rounded-full bg-[#E7F5F1] border border-[#0D8A6A]'><img src={greenTick} alt="" /></div>:<div className='w-6 aspect-square flex items-center justify-center rounded-full border border-[#EAECF0]'><div className=' bg-[#EAECF0] w-2 rounded-full aspect-square'></div></div>}
-            <div className='bg-[#EAECF0] h-20 w-[0.125rem]'></div>
+            {regStage == 'security'? <div className='bg-[#EAECF0] h-20 w-[0.125rem]'></div>:regStage != 'farmRegistration'? <div className='bg-[#EAECF0] h-20 w-[0.125rem]'></div> :<div className='bg-[#0E9874] h-20 w-[0.125rem]'></div>}
             {regStage != 'farmRegistration'? <div className='w-6 aspect-square flex items-center justify-center rounded-full border border-[#EAECF0]'><div className=' bg-[#EAECF0] w-2 rounded-full aspect-square'></div></div> : <div className='w-6 aspect-square flex items-center justify-center shadow-[0_0_0_4px_#B4DFD4] rounded-full bg-[#E7F5F1] border border-[#0D8A6A]'><div className=' bg-[#0D8A6A] w-2 rounded-full aspect-square'></div></div>}
           </div>
-          <div className=' w-full h-full '>
+          <div className=' w-full h-full overflow-y-scroll  no-scrollbar '>
           <Routes>
                 <Route path="/" element= {<PersonalDetails childPage={handletopage}/>}/>
                 <Route path="/bankDetails" element= {<BankDetails childPage={handletopage}/>}/>

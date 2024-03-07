@@ -47,10 +47,10 @@ const Login = () => {
       <div className="pl-[4rem] py-[3rem] w-[51.39%] h-full">
         <div className=" w-[78.51%] flex flex-col gap-[5vh] h-full">
           <div className="flex justify-between text-[#475467] text-[14px] font-medium">
-            <div className="flex gap-1 cursor-pointer">
+            <Link to={'/'} className="flex gap-1 cursor-pointer">
               <img src={leftArrow} alt="" />
               <p>Back home</p>
-            </div>
+            </Link>
           </div>
           <div className="flex flex-col items-center h-full">
             <div className="w-[73%] flex flex-col justify-between h-full  ">

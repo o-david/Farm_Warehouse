@@ -23,10 +23,10 @@ const Verification = () => {
       <div className="pl-[4rem] py-[3rem] border w-[51.39%]">
         <div className=" w-[78.51%] flex flex-col gap-[5vh]">
           <div className="flex justify-between text-[#475467] text-[14px] font-medium">
-            <div className="flex gap-1 cursor-pointer">
+            <Link to={'/'} className="flex gap-1 cursor-pointer">
               <img src={leftArrow} alt="" />
               <p>Back home</p>
-            </div>
+            </Link>
             <p className=" font-normal">
               Already have an account? <Link className=" font-semibold text-pry" to={"/"}>Log in</Link>{" "}
             </p>

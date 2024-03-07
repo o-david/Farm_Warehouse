@@ -11,13 +11,13 @@ const Security = ({childPage}) => {
     childPage('security')
   }, [])
   return (
-    <div className='w-[63%] overflow-y-scroll no-scrollbar border h-full'>
-        <div className='text-[#344054]'>
+    <div className='w-[63%] overflow-y-scroll no-scrollbar  h-full gap-6 flex flex-col'>
+        <div className='text-[#344054] flex gap-2 flex-col'>
             <h1 className=' font-bold text-[1.875rem]'>Create Account</h1>
             <p className=' font-medium text-[1.125rem]'>Security - Setup Fingerprint <span className=' italic font-normal'>(Optional)</span></p>
         </div>
-        <div className='flex flex-col'>
-          <div>
+        <div className='flex flex-col gap-4'>
+          <div className='flex flex-col gap-4'>
             <p>Capture Fingerprint (Your L-R Index fingers)</p>
             <div className=' flex text-[0.875rem] text-[#344054] font-normal justify-between w-[95.5%]'>
               <div className=' flex flex-col items-center'>
@@ -51,15 +51,15 @@ const Security = ({childPage}) => {
             <p>Place your finger on the fingerprint scanner to capture your fingerprint. Ensure your finger covers the entire scanner.</p>
           </div>
 
-          <div className='flex self-end rounded-lg  py-2 px-[0.875rem] border'>
+          <div className='flex self-end rounded-lg  py-2 px-[0.875rem] border gap-2 font-normal text-[#344054]'>
           <img src={isChecked?CheckboxChecked:Checkboxbase} onClick={handleCheckboxChange} alt="" />
             <p>Skip for now</p>
           </div>
 
         </div>
         <div className='flex justify-between'>
-          <span className='border w-[47.78%] py-[0.625rem] text-center rounded-lg'>Back</span>
-          <span className='bg-[#0D8A6A] border w-[47.78%] py-[0.625rem] text-center rounded-lg text-white'>Continue</span>
+          <button className='border w-[47.78%] py-[0.625rem] text-center rounded-lg'>Back</button>
+          <button disabled={!isChecked} className='bg-[#0D8A6A] border w-[47.78%] py-[0.625rem] disabled:bg-[#90D0BF] text-center rounded-lg text-white'>Continue</button>
         </div>
     </div>
   )
