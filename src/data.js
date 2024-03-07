@@ -42,4 +42,6 @@ const nigerianBanks = [
     "Gwagwalada"
   ];
 
-  export {nigerianBanks, abujaCities}
+  const numbers = Array.from({ length: 84 }, (_, i) => i + 17);
+
+  export {nigerianBanks, abujaCities, numbers}

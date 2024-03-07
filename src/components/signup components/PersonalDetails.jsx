@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Input from "../Input";
-import { abujaCities, nigerianBanks } from "../../data";
+import { abujaCities, nigerianBanks, numbers } from "../../data";
 import { alertCircle, passwordImg } from "../../assets";
 import { useNavigate } from "react-router-dom";
-
+import ng from "../../assets/ng.svg"
 const PersonalDetails = ({ childPage }) => {
-  const navigate =useNavigate()
+  const navigate = useNavigate();
   const [file, setFile] = useState(null);
   const [passwordError, setPasswordError] = useState(false);
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
@@ -14,6 +14,7 @@ const PersonalDetails = ({ childPage }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [image, setImage] = useState(null);
+  const [gender, setGender] = useState('');
 
   const handleImageUpload = (event) => {
     setImage(event.target.files[0]);
@@ -67,7 +68,7 @@ const PersonalDetails = ({ childPage }) => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    navigate('./bankDetails')
+    navigate("./bankDetails");
   };
   useEffect(() => {
     childPage("");
@@ -80,31 +81,60 @@ const PersonalDetails = ({ childPage }) => {
       </div>
       <form action="" onSubmit={handleSubmit} className="gap-4 flex flex-col">
         <div className="flex gap-[0.375rem]">
-        <Input
-          type={"text"}
-          label={"First Name"}
-          required={true}
-          placeholder={"Enter first name"}
-        />
-        <Input
-          type={"text"}
-          label={"Last Name"}
-          required={true}
-          placeholder={"Enter last name"}
-        />
+          <Input
+            type={"text"}
+            label={"First Name"}
+            required={true}
+            placeholder={"Enter first name"}
+          />
+          <Input
+            type={"text"}
+            label={"Last Name"}
+            required={true}
+            placeholder={"Enter last name"}
+          />
         </div>
         <div className="flex flex-col gap-2">
           <p className=" font-medium text-[0.875rem] text-[#344054]">
             Phone number<sup>*</sup>
           </p>
-          <div
-            className={`border border-[#D0D5DD] rounded-lg py-2 px-3 flex gap-1`}
+          <div className="flex gap-2 justify-between">
+            <div className="border rounded-lg  w-[18%] flex justify-evenly items-center">
+              <span className="w-[45%]">
+                 <img className="w-full rounded-sm" src={ng} alt="" />
+              </span>
+              <span className="">
+                <svg
+                  width="10"
+                  height="6"
+                  viewBox="0 0 10 6"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M8.3002 1.72917L5.58353 4.44584C5.2627 4.76667 4.7377 4.76667 4.41686 4.44584L1.7002 1.72917"
+                    stroke="#404040"
+                    stroke-width="1.5"
+                    stroke-miterlimit="10"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+            </div>
+            <div
+            className={`border border-[#D0D5DD] rounded-lg py-2 px-3 flex gap-2 focus-within:border-[#5EBAA2] w-full focus-within:shadow-[0_0_0_4px_#E7F5F1]`}
           >
-            <input
-              type="text"
-              className="text-[1rem] w-full outline-none text-[#101828]"
-              placeholder="Enter last name"
-            />
+              <span className="w-10">
+                +234
+              </span>
+              <input
+                type="text"
+                className="text-[1rem] w-full outline-none text-[#101828]"
+                placeholder="000 0000 000"
+                pattern="[0-9]*"
+              />
+            </div>
           </div>
         </div>
         <Input
@@ -113,6 +143,32 @@ const PersonalDetails = ({ childPage }) => {
           required={false}
           placeholder={"Enter email address"}
         />
+        <div className="flex justify-between">
+
+        <div className='w-[46.64%]'>
+        <Input
+          type={"dropdown"}
+          label={"Age"}
+          options={numbers}
+          placeholder={"Select age"}
+          required={true}
+        />  
+        </div>
+        <div className="flex w-[46.64%] flex-col gap-2 text-[#344054] text-[0.875rem] font-medium">
+          <p>Choose Gender*</p>
+          <div className="flex gap-5">
+            <div onClick={()=> setGender('male')} className="flex gap-2 items-center cursor-pointer">
+              {gender=='male'?<div className=" bg-[#E7F5F1] w-4 h-4 rounded-full flex justify-center items-center border border-[#0D8A6A]"><div className="rounded bg-[#0D8A6A] w-[0.375rem] aspect-square"></div></div>:<div className=" w-4 h-4 rounded-full flex justify-center items-center border border-[#D0D5DD]"></div>}
+              <label htmlFor="">Male</label>
+            </div>
+            <div onClick={() =>setGender('female')} className="flex gap-2 items-center cursor-pointer">
+              {gender=='female'?<div className=" bg-[#E7F5F1] w-4 h-4 rounded-full flex justify-center items-center border border-[#0D8A6A]"><div className="rounded bg-[#0D8A6A] w-[0.375rem] aspect-square"></div></div>:<div className=" w-4 h-4 rounded-full flex justify-center items-center border border-[#D0D5DD]"></div>}
+              <label htmlFor="">Female</label>
+            </div>
+          </div>
+          </div>
+        </div>
+
         <Input
           type={"text"}
           label={"Residential address"}
@@ -187,9 +243,7 @@ const PersonalDetails = ({ childPage }) => {
                   onFocus={handlePasswordFocus}
                 />
                 {passwordError ? (
-                  <img src={alertCircle}
-                  onClick={handleTogglePassword}
-                  />
+                  <img src={alertCircle} onClick={handleTogglePassword} />
                 ) : (
                   <img
                     onClick={handleTogglePassword}
@@ -219,8 +273,10 @@ const PersonalDetails = ({ childPage }) => {
                   onFocus={handleConfirmPasswordFocus}
                 />
                 {confirmPasswordError ? (
-                  <img src={alertCircle}
-                  onClick={handleToggleConfirmPassword} />
+                  <img
+                    src={alertCircle}
+                    onClick={handleToggleConfirmPassword}
+                  />
                 ) : (
                   <img
                     onClick={handleToggleConfirmPassword}
@@ -236,139 +292,139 @@ const PersonalDetails = ({ childPage }) => {
               )}
             </div>
           </div>
-        
-        <div className=" flex-col flex gap-3 text-[0.875rem] font-normal text-[#475467]">
-          {!password ? (
-            <div className="flex gap-2 items-center">
-              <span>
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect width="20" height="20" rx="10" fill="#D0D5DD" />
-                  <path
-                    d="M6.25 10L8.75 12.5L13.75 7.5"
-                    stroke="white"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </span>
-              <span>Must be at least 8 characters</span>
-            </div>
-          ) : validatePasswordLength(password) ? (
-            <div className="flex gap-2 items-center">
-              <span>
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M6.24996 9.99996L8.74996 12.5L13.75 7.49996M18.3333 9.99996C18.3333 14.6023 14.6023 18.3333 9.99996 18.3333C5.39759 18.3333 1.66663 14.6023 1.66663 9.99996C1.66663 5.39759 5.39759 1.66663 9.99996 1.66663C14.6023 1.66663 18.3333 5.39759 18.3333 9.99996Z"
-                    stroke="#079455"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </span>
-              <span>Must be at least 8 characters</span>
-            </div>
-          ) : (
-            <div className="flex gap-2 items-center text-[#F04438]">
-              <span>
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9.99996 6.66663V9.99996M9.99996 13.3333H10.0083M18.3333 9.99996C18.3333 14.6023 14.6023 18.3333 9.99996 18.3333C5.39759 18.3333 1.66663 14.6023 1.66663 9.99996C1.66663 5.39759 5.39759 1.66663 9.99996 1.66663C14.6023 1.66663 18.3333 5.39759 18.3333 9.99996Z"
-                    stroke="#F04438"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </span>
-              <span>Must be at least 8 characters</span>
-            </div>
-          )}
-          {!password ? (
-            <div className="flex gap-2 items-center">
-              <span>
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect width="20" height="20" rx="10" fill="#D0D5DD" />
-                  <path
-                    d="M6.25 10L8.75 12.5L13.75 7.5"
-                    stroke="white"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </span>
-              <span>Must contain one special character</span>
-            </div>
-          ) : validatePasswordSpecialChar(password) ? (
-            <div className="flex gap-2 items-center">
-              <span>
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M6.24996 9.99996L8.74996 12.5L13.75 7.49996M18.3333 9.99996C18.3333 14.6023 14.6023 18.3333 9.99996 18.3333C5.39759 18.3333 1.66663 14.6023 1.66663 9.99996C1.66663 5.39759 5.39759 1.66663 9.99996 1.66663C14.6023 1.66663 18.3333 5.39759 18.3333 9.99996Z"
-                    stroke="#079455"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </span>
-              <span>Must contain one special character</span>
-            </div>
-          ) : (
-            <div className="flex gap-2 items-center text-[#F04438]">
-              <span>
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9.99996 6.66663V9.99996M9.99996 13.3333H10.0083M18.3333 9.99996C18.3333 14.6023 14.6023 18.3333 9.99996 18.3333C5.39759 18.3333 1.66663 14.6023 1.66663 9.99996C1.66663 5.39759 5.39759 1.66663 9.99996 1.66663C14.6023 1.66663 18.3333 5.39759 18.3333 9.99996Z"
-                    stroke="#F04438"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </span>
-              <span>Must contain one special character</span>
-            </div>
-          )}
-        </div>
+
+          <div className=" flex-col flex gap-3 text-[0.875rem] font-normal text-[#475467]">
+            {!password ? (
+              <div className="flex gap-2 items-center">
+                <span>
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect width="20" height="20" rx="10" fill="#D0D5DD" />
+                    <path
+                      d="M6.25 10L8.75 12.5L13.75 7.5"
+                      stroke="white"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                <span>Must be at least 8 characters</span>
+              </div>
+            ) : validatePasswordLength(password) ? (
+              <div className="flex gap-2 items-center">
+                <span>
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6.24996 9.99996L8.74996 12.5L13.75 7.49996M18.3333 9.99996C18.3333 14.6023 14.6023 18.3333 9.99996 18.3333C5.39759 18.3333 1.66663 14.6023 1.66663 9.99996C1.66663 5.39759 5.39759 1.66663 9.99996 1.66663C14.6023 1.66663 18.3333 5.39759 18.3333 9.99996Z"
+                      stroke="#079455"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                <span>Must be at least 8 characters</span>
+              </div>
+            ) : (
+              <div className="flex gap-2 items-center text-[#F04438]">
+                <span>
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.99996 6.66663V9.99996M9.99996 13.3333H10.0083M18.3333 9.99996C18.3333 14.6023 14.6023 18.3333 9.99996 18.3333C5.39759 18.3333 1.66663 14.6023 1.66663 9.99996C1.66663 5.39759 5.39759 1.66663 9.99996 1.66663C14.6023 1.66663 18.3333 5.39759 18.3333 9.99996Z"
+                      stroke="#F04438"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                <span>Must be at least 8 characters</span>
+              </div>
+            )}
+            {!password ? (
+              <div className="flex gap-2 items-center">
+                <span>
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect width="20" height="20" rx="10" fill="#D0D5DD" />
+                    <path
+                      d="M6.25 10L8.75 12.5L13.75 7.5"
+                      stroke="white"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                <span>Must contain one special character</span>
+              </div>
+            ) : validatePasswordSpecialChar(password) ? (
+              <div className="flex gap-2 items-center">
+                <span>
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6.24996 9.99996L8.74996 12.5L13.75 7.49996M18.3333 9.99996C18.3333 14.6023 14.6023 18.3333 9.99996 18.3333C5.39759 18.3333 1.66663 14.6023 1.66663 9.99996C1.66663 5.39759 5.39759 1.66663 9.99996 1.66663C14.6023 1.66663 18.3333 5.39759 18.3333 9.99996Z"
+                      stroke="#079455"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                <span>Must contain one special character</span>
+              </div>
+            ) : (
+              <div className="flex gap-2 items-center text-[#F04438]">
+                <span>
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.99996 6.66663V9.99996M9.99996 13.3333H10.0083M18.3333 9.99996C18.3333 14.6023 14.6023 18.3333 9.99996 18.3333C5.39759 18.3333 1.66663 14.6023 1.66663 9.99996C1.66663 5.39759 5.39759 1.66663 9.99996 1.66663C14.6023 1.66663 18.3333 5.39759 18.3333 9.99996Z"
+                      stroke="#F04438"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                <span>Must contain one special character</span>
+              </div>
+            )}
+          </div>
         </div>
         <div className="flex flex-col gap-2">
           <p className=" font-medium text-[0.875rem] text-[#344054]">
@@ -426,7 +482,9 @@ const PersonalDetails = ({ childPage }) => {
               <span>Upload picture</span>
             </label>
           </div>
-          <p className="text-[0.75rem] font-normal text-[#475467]">PNG or JPG (max. 5MB)</p>
+          <p className="text-[0.75rem] font-normal text-[#475467]">
+            PNG or JPG (max. 5MB)
+          </p>
         </div>
         <div className="flex justify-between">
           <button
