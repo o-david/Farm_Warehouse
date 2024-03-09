@@ -5,12 +5,16 @@ const Input = ({
   type,
   id,
   label,
+  placeholder2,
   required,
   placeholder,
   error,
   message,
   options,
+  double,
+  small,
 }) => {
+  const [numInput, setNumInput] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
   const toggleDropdown = () => {
@@ -22,13 +26,28 @@ const Input = ({
     setSelectedOption(option);
   };
 
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    const numericValue = value.replace(/[^0-9]/g, '').slice(0, 10);
+    setNumInput(numericValue);
+  }
+
+  // const handleInputChange = (value) => {
+  //   if (/^\d$/.test(value) || value === "") {
+  //     setNumInput(numInput + value);
+  //     // if (index < 4 && value !== "") {
+  //     //   inputRefs.current[index + 1].focus();
+  //     // }
+  //   }
+  // }
+
   return (
     <div>
       {type == "text" && (
         <div className="flex flex-col gap-2">
           <p
             
-            className=" font-medium text-[0.875rem] text-[#344054]"
+            className= {`font-medium ${small?'text-[0.75rem]':'text-[0.875rem]'} text-[#344054]`}
           >
             {label}
             {required ? (
@@ -37,6 +56,9 @@ const Input = ({
               <span className="italic font-normal">(Optional)</span>
             )}
           </p>
+          <div className={`${double && 'flex gap-[0.375rem]'}`}>
+
+          
           <div
             className={`border border-[#D0D5DD] rounded-lg py-2 px-3 flex gap-1 focus-within:border-[#5EBAA2] focus-within:shadow-[0_0_0_4px_#E7F5F1]`}
           >
@@ -47,6 +69,21 @@ const Input = ({
               
             />
             {error && <img src={alertCircle} />}
+          </div>
+          {
+            double &&
+          <div
+            className={`border border-[#D0D5DD] rounded-lg py-2 px-3 flex gap-1 focus-within:border-[#5EBAA2] focus-within:shadow-[0_0_0_4px_#E7F5F1]`}
+          >
+            <input
+              type="text"
+              className="text-[1rem] w-full outline-none text-[#101828]"
+              placeholder={placeholder2}
+              
+            />
+            {error && <img src={alertCircle} />}
+          </div>
+          }
           </div>
           {error ? (
             <p className="text-[#F04438] text-[0.875rem]">{error}</p>
@@ -138,6 +175,45 @@ const Input = ({
           )}
         </div>
       )}
+      {type == "number" && <div>
+      <div className="flex flex-col gap-2">
+          <p
+            
+            className=" font-medium text-[0.875rem] text-[#344054]"
+          >
+            {label}
+            {required ? (
+              <sup>*</sup>
+            ) : (
+              <span className="italic font-normal">(Optional)</span>
+            )}
+          </p>
+          <div
+            className={`border border-[#D0D5DD] rounded-lg py-2 px-3 flex gap-1 focus-within:border-[#5EBAA2] focus-within:shadow-[0_0_0_4px_#E7F5F1]`}
+          >
+            <input
+            type="text"
+            className="text-[1rem] w-full outline-none text-[#101828]"
+            placeholder={placeholder}
+            value={numInput}
+            onChange={handleInputChange}
+          />
+            {error && <img src={alertCircle} />}
+          </div>
+          {error ? (
+            <p className="text-[#F04438] text-[0.875rem]">{error}</p>
+          ) : (
+            message && (
+              <p className="text-[0.75rem] text-[#475467] font-normal">
+                {message}
+              </p>
+            )
+          )}
+        </div>
+         
+        
+        </div>}
+      
     </div>
   );
 };

@@ -58,7 +58,7 @@ const BankDetails = ({ childPage }) => {
           required={true}
         />
         <Input
-          type={"text"}
+          type={"number"}
           label={"Personal Bank Account Number"}
           required={true}
           placeholder={"Enter your bank account number"}

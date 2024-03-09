@@ -128,11 +128,11 @@ const PersonalDetails = ({ childPage }) => {
               <span className="w-10">
                 +234
               </span>
-              <input
-                type="text"
+              <Input
+                type="number"
                 className="text-[1rem] w-full outline-none text-[#101828]"
                 placeholder="000 0000 000"
-                pattern="[0-9]*"
+                // pattern="[0-9]*"
               />
             </div>
           </div>

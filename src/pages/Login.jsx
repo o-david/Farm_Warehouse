@@ -78,7 +78,7 @@ const Login = () => {
             </Link>
           </div>
           <div className="flex flex-col items-center h-full">
-            <div className="lg:w-[73%] w-[91.47%] flex flex-col gap-6 lg:justify-between overflow-scroll">
+            <div className="lg:w-[73%] w-[91.47%] flex flex-col gap-6 lg:justify-between no-scrollbar overflow-scroll">
               <div className=" flex flex-col lg:gap-3 gap-1 items-center">
                 <h1 className=" font-semibold text-[30px] text-left w-full">
                   Welcome back!
